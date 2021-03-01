@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart';
-import 'package:trackingcovid/model/get_post_model_prov.dart';
+import 'package:trackingcovid/model/get_post_model_semb.dart';
 
 //sebuah controller
-class GetPostProv {
-  final String getposturl = "https://api.kawalcorona.com/indonesia/provinsi";
+class GetPostSemb {
+  final String getposturl = "https://api.kawalcorona.com/sembuh";
 
   //mengambil data
   Future<List<Post>> manggilPostData() async{
@@ -17,7 +17,7 @@ class GetPostProv {
   return postData;
     }
     else{
-      throw "data Tidak Ada";
+      throw "Data Tidak Ada";
     }
   }
 }

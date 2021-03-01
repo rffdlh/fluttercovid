@@ -1,8 +1,7 @@
 import 'dart:ui';
 
 import 'package:trackingcovid/core/consts.dart';
-import 'package:trackingcovid/pages/statistics_page.dart';
-import 'package:trackingcovid/widgets/custom_appbar_widget.dart';
+import 'package:trackingcovid/home.dart';
 import 'package:flutter/material.dart';
 class HomePage extends StatefulWidget {
   @override
@@ -33,7 +32,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 30),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: RichText(
@@ -55,7 +54,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 30),
           Container(
             height: 130,
             child: ListView(
@@ -70,7 +69,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 30),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: RichText(
@@ -84,7 +83,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 30),
           Container(
             height: 130,
             child: ListView(
@@ -101,70 +100,60 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => StatisticPage(),
-                ),
-              );
-            },
-            child: Container(
-              height: 90,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(15),
-                ),
-                border: Border.all(color: Colors.white),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    offset: Offset(1, 1),
-                    spreadRadius: 1,
-                    blurRadius: 1,
-                  )
-                ],
-              ),
-              padding: EdgeInsets.all(12),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Image.asset("assets/images/map.png"),
-                  SizedBox(width: 25),
-                  RichText(
-                    text: TextSpan(
-                      text: "KASUS\n",
-                      style: TextStyle(
-                        color: AppColors.mainColor,
-                        fontWeight: FontWeight.bold,
-                        height: 1.3,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: "Di Seluruh Dunia",
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(child: SizedBox()),
-                  IconButton(
-                    icon: Icon(Icons.arrow_forward_ios),
-                    onPressed: null,
-                  ),
-                ],
-              ),
-              margin: EdgeInsets.symmetric(horizontal: 16),
-            ),
-          ),
+          _buildFooter(context),
         ],
       ),
     );
   }
+
+  Widget _buildFooter(BuildContext context) {
+    return Positioned(
+      bottom: 50,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => Home(),
+              ),
+            );
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(
+                Radius.circular(20)
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    offset: Offset(1, 1),
+                    spreadRadius: 1,
+                    blurRadius: 3,
+                    ),
+                  ],
+                ),
+                width: MediaQuery.of(context).size.width * .85,
+                height: 60,
+                child: Center(
+                  child: Text(
+                    'INFO LAINNYA',
+                    style: TextStyle(
+                      color: AppColors.mainColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
   Widget _buildSymptomItem(String path, String text) {
     return Column(
@@ -264,7 +253,7 @@ class _HomePageState extends State<HomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        CustomAppBarWidget(),
+        SizedBox(height: 40),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Text(
@@ -320,6 +309,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+        SizedBox(height: 25),
       ],
     );
   }
